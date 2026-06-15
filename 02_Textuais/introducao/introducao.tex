@@ -1,3 +1,48 @@
 \chapter{Introdução}
 \label{chapter:introducao}
 
+O parque tecnológico dos estabelecimentos de saúde tornou-se cada vez mais
+numeroso, diversificado e dependente de manutenção especializada. Equipamentos
+médico-hospitalares (EMH) participam diretamente do diagnóstico, do tratamento e
+do suporte à vida, de modo que sua disponibilidade e seu funcionamento seguro
+impactam tanto a qualidade da assistência quanto a segurança do paciente.
+Garantir esse funcionamento ao longo do ciclo de vida dos equipamentos é uma das
+principais atribuições da engenharia clínica.
+
+Na prática, contudo, a gestão desse parque enfrenta um obstáculo recorrente: os
+dados necessários à tomada de decisão --- inventário, criticidade e histórico de
+manutenção --- costumam estar dispersos em planilhas de diferentes origens e
+formatos, muitas vezes incompatíveis entre si. Mudanças nos sistemas de registro
+ao longo do tempo produzem históricos fragmentados, com convenções distintas de
+nomes de campos, de datas e de valores. Como consequência, decisões importantes
+--- em especial as de substituição de equipamentos --- acabam sendo tomadas de
+forma intuitiva, sem critérios sistemáticos que conciliem criticidade clínica,
+idade e custo acumulado de manutenção.
+
+Diante desse cenário, este trabalho tem como objetivo geral desenvolver um
+pipeline analítico e uma ferramenta de apoio à decisão que integrem, de forma
+automatizada, os dados de inventário, criticidade e ordens de serviço de
+manutenção corretiva, transformando-os em indicadores de gestão e em um modelo de
+otimização multicritério que prioriza a substituição de equipamentos e orienta a
+alocação do orçamento disponível. Como objetivos específicos, destacam-se: (i)
+unificar formatos heterogêneos de ordens de serviço em uma base de dados
+consistente; (ii) cruzar essa base com o inventário e a criticidade de cada
+equipamento; (iii) propor e implementar um índice de priorização de substituição
+que combine criticidade, idade e custo acumulado de manutenção; (iv) formular, a
+partir desse índice, um modelo de otimização multicritério para a alocação do
+orçamento de substituição, maximizando o impacto do investimento disponível; e
+(v) disponibilizar os resultados em um painel visual interativo, validando-o com
+dados reais de um hospital de grande porte.
+
+Justifica-se o trabalho pela relevância de dotar a engenharia clínica de
+instrumentos que apoiem decisões baseadas em evidência, com potencial de
+aprimorar a segurança do paciente e de subsidiar o planejamento orçamentário de
+renovação do parque. Como estudo de caso, a ferramenta foi aplicada a dados reais
+do Hospital das Clínicas da Universidade Federal de Pernambuco (HC-UFPE).
+
+O restante do trabalho está organizado da seguinte forma: o
+Capítulo~\ref{chap:refteorico} apresenta a fundamentação teórica; o
+Capítulo~\ref{chap:metodologia} detalha a metodologia de desenvolvimento e de
+tratamento dos dados; o Capítulo~\ref{chap:resultados} expõe e interpreta os
+resultados obtidos no estudo de caso; e o Capítulo~\ref{chapter:conclusao} traz
+as considerações finais e as perspectivas de trabalhos futuros.

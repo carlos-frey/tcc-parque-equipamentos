@@ -1,20 +1,21 @@
 \chapter{RESULTADOS E DISCUSSÃO}
+\label{chap:resultados}
 
-Os resultados apresentados neste capítulo foram obtidos a partir da execução
-real do software desenvolvido (\texttt{poetry run dashboard}), com as quatro
-planilhas de origem carregadas e a análise processada. As figuras referenciadas
-encontram-se no diretório \texttt{imagens/}.
+Este capítulo apresenta os resultados obtidos com a aplicação do dashboard
+desenvolvido, utilizando dados reais do parque de equipamentos
+médico-hospitalares do HC-UFPE. Os indicadores foram gerados pela própria
+ferramenta a partir da ingestão e do cruzamento automático das planilhas de
+inventário, criticidade e ordens de serviço de manutenção corretiva, conforme o
+método descrito no capítulo anterior.
 
-\section{Configuração da análise}
+\section{Procedimento de obtenção dos dados}
 
-A Tabela~\ref{tab:insumos} relaciona os insumos utilizados na análise. O sistema
-consolida o inventário e a criticidade dos equipamentos com as ordens de serviço
-(OS) provenientes de dois formatos distintos de planilha: o formato antigo e o
-formato atual.
+O dashboard foi executado e alimentado com quatro planilhas, processadas pela
+camada de transformação do sistema, conforme a Tabela~\ref{tab:insumos}.
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:insumos}{Insumos utilizados na análise}{Elaborado pelo autor (2026)}
+    \captionsource{tab:insumos}{Planilhas reais utilizadas no estudo de caso}{Elaborado pelo autor (2026)}
     \begin{tabular}{ll}
         \hline
         \textbf{Insumo} & \textbf{Arquivo} \\
@@ -27,24 +28,26 @@ formato atual.
     \end{tabular}
 \end{table}
 
-A base processada compreende:
+Ao carregar a análise, o sistema unificou os dois formatos de ordens de serviço
+em uma base única e cruzou cada OS com o inventário e a criticidade de cada
+equipamento. Foram consolidadas 2.883 ordens de serviço (2.568 do formato antigo
+e 318 do formato atual) e 2.511 equipamentos de inventário. Sobre esse universo,
+o sistema aplica automaticamente o recorte de setores críticos, resultando em 516
+equipamentos analisados --- o conjunto sobre o qual incidem os indicadores a
+seguir.
 
-\begin{itemize}
-    \item \textbf{Inventário total processado:} 2.511 equipamentos.
-    \item \textbf{Ordens de serviço consolidadas (base bruta):} 2.883 OS
-    (2.568 do formato antigo e 318 do atual).
-    \item \textbf{Recorte de análise (filtro de setores críticos --- padrão do
-    sistema):} 8 sub-setores de UTI Adulto, UTI Neonatal, Bloco Cirúrgico e
-    Centro Obstétrico, totalizando 516 equipamentos.
-\end{itemize}
+\section{Indicadores gerais}
 
-Todos os indicadores a seguir referem-se ao recorte de 516 equipamentos dos
-setores críticos.
+A tela de análise consolida três indicadores-chave (KPIs) no topo, seguidos das
+visualizações de idade, prioridade de substituição, histórico de OS e custos. A
+Figura~\ref{fig:aba_analise} apresenta a aba de análise tal como exibida pela
+ferramenta, e a Tabela~\ref{tab:kpis} resume os principais indicadores.
 
-\section{Indicadores principais (KPIs)}
-
-A Tabela~\ref{tab:kpis} sintetiza os principais indicadores de desempenho do
-recorte analisado.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{./imagens/01_aba_analise.png}
+    \captionsource{fig:aba_analise}{Aba de Análise do dashboard com os dados do HC-UFPE carregados}{Elaborado pelo autor (2026)}
+\end{figure}
 
 \begin{table}[H]
     \centering
@@ -58,35 +61,20 @@ recorte analisado.
         Gasto total em OS & R\$~315.613,59 \\
         Custo médio por OS & $\approx$ R\$~1.288 \\
         Idade média do parque & 7,3 anos \\
-        Equipamentos com $\geq$ 10 anos & 97 (18,8\%) \\
+        Equipamentos com 10 anos ou mais & 97 (18,8\%) \\
         \hline
     \end{tabular}
 \end{table}
 
-Quanto à composição por criticidade, o recorte distribui-se em: Alta (3) = 134
-equipamentos; Média (2) = 156; e Baixa (1) = 226. Em relação ao status, 100\%
-constam como ``Em uso'', uma vez que a base não traz equipamentos baixados ou
-inoperantes nesse recorte. A Figura~\ref{fig:aba_analise} apresenta a aba de
-análise do dashboard.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{./imagens/01_aba_analise.png}
-    \captionsource{fig:aba_analise}{Aba de análise do dashboard}{Elaborado pelo autor (2026)}
-\end{figure}
-
-\section{Distribuição por idade}
-
-Dos 516 equipamentos, 97 (18,8\%) já ultrapassaram o corte de 10 anos de vida
-útil. A idade média (7,3 anos) é puxada para baixo por aquisições recentes, mas
-há uma cauda relevante de equipamentos antigos --- de até 23 anos ---, justamente
-os de maior criticidade.
+Quanto à criticidade, o recorte distribui-se em 134 equipamentos de criticidade
+alta (nível 3), 156 de criticidade média (nível 2) e 226 de criticidade baixa
+(nível 1). Todos os equipamentos constam com status ``Em uso''.
 
 \section{Prioridade de substituição}
 
-O \textit{score} (0--100) combina idade, criticidade e custo acumulado de
-manutenção. A Tabela~\ref{tab:ranking} apresenta o topo do ranking de prioridade
-de substituição.
+O sistema calcula um \textit{score} de 0 a 100 para cada equipamento, combinando
+idade, criticidade e custo acumulado de manutenção, e ordena os candidatos à
+substituição. A Tabela~\ref{tab:ranking} traz os equipamentos mais bem pontuados.
 
 \begin{table}[H]
     \centering
@@ -107,14 +95,17 @@ de substituição.
     \end{tabular}
 \end{table}
 
-O topo do ranking é dominado por equipamentos de criticidade máxima (3) e idade
-$\geq$ 13 anos, concentrados em UTI Neonatal e Centro Obstétrico (incubadoras e
-aquecedores BA-51, fototerapia BILITRON, ventilador de transporte OXYLOG).
+O topo do ranking é integralmente composto por equipamentos de criticidade máxima
+(nível 3) e idade igual ou superior a 13 anos --- chegando a 23 anos ---,
+concentrados em UTI Neonatal e Centro Obstétrico (incubadoras e berços aquecidos
+BA-51, aparelhos de fototerapia BILITRON e ventilador de transporte OXYLOG).
 
-\section{Histórico de emissão de OS e custo por ano}
+\section{Histórico de emissão de OS e evolução de custo}
 
-A Tabela~\ref{tab:historico} apresenta a evolução anual do número de OS, do custo
-total e do custo médio por OS.
+A Tabela~\ref{tab:historico} cruza o número de ordens de serviço com o custo total
+por ano. As Figuras~\ref{fig:custo_setor} e~\ref{fig:evolucao_custo} apresentam,
+respectivamente, o histórico de emissão de OS com a distribuição de custo por
+setor, e a evolução do custo total por ano com os dez equipamentos de maior custo.
 
 \begin{table}[H]
     \centering
@@ -135,18 +126,18 @@ total e do custo médio por OS.
     \end{tabular}
 \end{table}
 
-\noindent \textsuperscript{*} 2025 é ano parcial (dados até 13/11/2025).
+\noindent \textsuperscript{*} O ano de 2025 é parcial (dados até 13/11/2025).
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./imagens/02_custo_setor_historico_os.png}
-    \captionsource{fig:custo_setor}{Custo por setor e histórico de OS}{Elaborado pelo autor (2026)}
+    \captionsource{fig:custo_setor}{Custo por setor (Top 5) e histórico de emissão de OS por ano}{Elaborado pelo autor (2026)}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./imagens/03_evolucao_custo_top10.png}
-    \captionsource{fig:evolucao_custo}{Evolução do custo e Top 10 equipamentos}{Elaborado pelo autor (2026)}
+    \captionsource{fig:evolucao_custo}{Evolução do custo total por ano e Top 10 equipamentos por custo}{Elaborado pelo autor (2026)}
 \end{figure}
 
 \section{Concentração de custo por setor}
@@ -171,56 +162,56 @@ setor.
     \end{tabular}
 \end{table}
 
-A UTI Neonatal, sozinha, responde por $\sim$39\% de todo o gasto corretivo do
-recorte.
-
-\section{Top 10 equipamentos por custo}
-
-Agrupados por modelo, os dez equipamentos de maior custo são: DUETTO-2386 e IX-5
-(incubadoras), THERMOFLATOR-264320 e SERVO AIR (ventilação), IT-158-TS, BA-51,
-MOBILEART EVOLUTION, OXYLOG-3000, ACUSON X-150 e ENTERPRISE-8000. Predominam,
-portanto, equipamentos de suporte à vida neonatal e de ventilação.
+A UTI Neonatal, isoladamente, responde por aproximadamente 39\% de todo o gasto
+com manutenção corretiva do recorte analisado.
 
 \section{Interpretação dos resultados}
 
-\subsection{O custo de manutenção está migrando de ``muitas OS baratas'' para ``poucas OS caras''}
+\subsection*{Migração de ``muitas OS baratas'' para ``poucas OS caras''}
 
-Entre 2020 e 2022, o parque gerava muitas ordens de baixo valor, com o custo
-médio caindo até $\approx$ R\$~280/OS em 2022. A partir de 2023, o padrão se
-inverte: o número de OS cai (de 56 para cerca de 11--21 por ano), mas o custo
-médio por OS dispara --- de R\$~280 (2022) para R\$~4.029 (2024) e R\$~7.142
-(2025). Esse é o comportamento típico de um parque envelhecendo: falhas mais
-graves, peças mais caras e intervenções de maior porte. Mesmo com 2025 ainda
-parcial, o gasto anual já supera o de 2024.
+Entre 2020 e 2022, o parque gerava um grande número de ordens de serviço de baixo
+valor --- o custo médio por OS chegou a cerca de R\$~280 em 2022. A partir de 2023
+o padrão se inverte: o número de OS cai (de 56 para algo entre 11 e 21 por ano),
+enquanto o custo médio por OS dispara, saindo de R\$~280 (2022) para R\$~4.029
+(2024) e R\$~7.142 (2025). Esse comportamento é típico de um parque em
+envelhecimento: as falhas tornam-se mais graves, as peças mais caras e as
+intervenções de maior porte. Mesmo com 2025 ainda incompleto, o gasto anual já
+supera o de 2024.
 
-\subsection{Risco e custo estão concentrados nos mesmos setores}
+\subsection*{Risco e custo concentrados nos mesmos setores}
 
 A UTI Neonatal lidera o gasto corretivo ($\sim$39\% do total) e também concentra
-os equipamentos do topo do ranking de substituição (BA-51, BILITRON, IX-5). Não
-se trata de dispersão: há um núcleo crítico onde criticidade alta, idade elevada
-e custo de manutenção coincidem --- exatamente o alvo no qual a substituição traz
-maior retorno em segurança do paciente e redução de custo.
+os equipamentos do topo do ranking de substituição (berços BA-51, fototerapia
+BILITRON, incubadoras IX-5). Não há dispersão: existe um núcleo crítico em que
+criticidade alta, idade elevada e custo de manutenção coincidem --- exatamente o
+alvo em que a substituição traz maior retorno em segurança do paciente e redução
+de despesa.
 
-\subsection{Há uma cauda de equipamentos no fim da vida útil}
+\subsection*{Cauda de equipamentos no fim da vida útil}
 
-18,8\% do parque crítico já passou de 10 anos, e o topo do ranking chega a 23
-anos de uso em equipamentos de criticidade 3. São candidatos diretos a
-substituição planejada --- o software materializa isso no \textit{score} e na
-funcionalidade ``Distribuir orçamento''.
+Cerca de 18,8\% do parque crítico já ultrapassou os 10 anos de uso, e o topo do
+ranking alcança 23 anos em equipamentos de criticidade máxima. São candidatos
+diretos a uma substituição planejada, função que a ferramenta materializa no
+cálculo do \textit{score} e no modelo de distribuição de orçamento descrito na
+Seção~\ref{sec:score}.
 
-\subsection{Valor da ferramenta para a gestão}
+\subsection*{Contribuição da ferramenta para a gestão}
 
-O dashboard converte cerca de 2.900 OS, dispersas em dois formatos de planilha,
-em indicadores acionáveis: prioriza substituições por evidência (idade +
-criticidade + custo), localiza onde o dinheiro está sendo gasto (UTI Neonatal) e
-expõe a tendência de custo crescente --- insumos diretos para justificar
-investimento em renovação de parque na engenharia clínica do HC-UFPE.
+O dashboard converte cerca de 2.900 ordens de serviço, originalmente dispersas em
+dois formatos distintos de planilha, em indicadores acionáveis: prioriza
+substituições com base em evidência (idade, criticidade e custo), recomenda a
+alocação do orçamento aos itens de maior prioridade, identifica onde o recurso
+está sendo consumido (UTI Neonatal) e evidencia a tendência de custo crescente.
+Esses elementos constituem insumo direto para justificar investimentos na
+renovação do parque de equipamentos da engenharia clínica do HC-UFPE.
 
-\subsection{Limitações}
+\section{Limitações}
 
-O ano de 2025 é parcial; todos os equipamentos constam como ``Em uso'' (a base
-não registra baixas); e os valores refletem apenas manutenção corretiva externa
-do recorte escolhido (UTI, Bloco Cirúrgico e Centro Obstétrico). Trocar as
-planilhas de OS (por exemplo, incluindo corretivas internas) ou ampliar os
-setores no menu de configurações altera os números --- o que reforça o caráter
-exploratório da ferramenta.
+Os resultados devem ser lidos considerando que: (i) o ano de 2025 é parcial, o que
+pode inflar o custo médio por OS pela amostra reduzida; (ii) todos os equipamentos
+constam como ``Em uso'', pois a base não registra baixas ou equipamentos
+inoperantes; e (iii) os valores referem-se apenas à manutenção corretiva externa
+do recorte de setores críticos (UTI, Bloco Cirúrgico e Centro Obstétrico). A
+substituição das planilhas de OS ou a ampliação dos setores incluídos, ambas
+possíveis no próprio sistema, alteram os números --- o que reforça o caráter
+exploratório e configurável da ferramenta.
