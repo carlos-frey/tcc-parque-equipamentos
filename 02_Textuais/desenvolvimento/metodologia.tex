@@ -35,6 +35,7 @@ Dados, na qual a base consolidada pode ser consultada em formato tabular.
 \end{figure}
 
 \section{Fontes de dados}
+\label{sec:fontes}
 
 Foram utilizados quatro arquivos no formato CSV, fornecidos pela engenharia
 clínica do HC-UFPE, organizados em quatro papéis distintos, conforme a
@@ -42,7 +43,6 @@ Tabela~\ref{tab:fontes}.
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:fontes}{Fontes de dados utilizadas e seus papéis}{Elaborado pelo autor (2026)}
     \begin{tabular}{lp{9cm}}
         \hline
         \textbf{Insumo} & \textbf{Conteúdo} \\
@@ -53,6 +53,7 @@ Tabela~\ref{tab:fontes}.
         OS --- formato atual & Ordens de serviço corretivas no padrão recente, com datas em formato ISO e valores em convenção norte-americana. \\
         \hline
     \end{tabular}
+    \captionsource{tab:fontes}{Fontes de dados utilizadas e seus papéis}{Elaborado pelo autor (2026)}
 \end{table}
 
 A coexistência de dois formatos distintos de ordens de serviço --- resultado de
@@ -60,6 +61,24 @@ uma mudança no sistema de registro ao longo do tempo --- constitui um dos
 principais desafios de integração tratados pela ferramenta, uma vez que cada
 formato adota convenções diferentes de nomes de colunas, de representação de
 datas e de separadores numéricos.
+
+No estudo de caso conduzido neste trabalho, esses quatro papéis foram preenchidos
+pelos arquivos reais do HC-UFPE listados na Tabela~\ref{tab:arquivos}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        \textbf{Insumo} & \textbf{Arquivo} \\
+        \hline
+        Inventário de equipamentos & \texttt{Inventario\_HC\_UFPE.csv} \\
+        Criticidade & \texttt{planilha de equipamentos final.csv} \\
+        OS --- formato antigo & \texttt{Corretivas\_Externas\_2018\_a\_2024.csv} \\
+        OS --- formato atual & \texttt{ServicoExternoPeriodo20251113092221.csv} \\
+        \hline
+    \end{tabular}
+    \captionsource{tab:arquivos}{Arquivos utilizados no estudo de caso do HC-UFPE}{Elaborado pelo autor (2026)}
+\end{table}
 
 \section{Processo de tratamento dos dados (ETL)}
 
@@ -79,7 +98,6 @@ Tabela~\ref{tab:normalizacao}.
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:normalizacao}{Normalização dos atributos por formato de origem}{Elaborado pelo autor (2026)}
     \begin{tabular}{lll}
         \hline
         \textbf{Atributo} & \textbf{Formato antigo (BR)} & \textbf{Formato atual (ISO/US)} \\
@@ -89,6 +107,7 @@ Tabela~\ref{tab:normalizacao}.
         Descrição do serviço & tipo de serviço + assistência & fornecedor \\
         \hline
     \end{tabular}
+    \captionsource{tab:normalizacao}{Normalização dos atributos por formato de origem}{Elaborado pelo autor (2026)}
 \end{table}
 
 Em seguida, os nomes das colunas de ambos os formatos são mapeados para um
@@ -121,7 +140,6 @@ complementares, conforme a Tabela~\ref{tab:score}.
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:score}{Critérios e pontuações do índice de priorização}{Elaborado pelo autor (2026)}
     \begin{tabular}{lp{7cm}r}
         \hline
         \textbf{Critério} & \textbf{Regra} & \textbf{Pontuação máxima} \\
@@ -131,6 +149,7 @@ complementares, conforme a Tabela~\ref{tab:score}.
         Custo de manutenção & Proporcional ao custo acumulado em relação ao maior custo do parque & 30 pontos \\
         \hline
     \end{tabular}
+    \captionsource{tab:score}{Critérios e pontuações do índice de priorização}{Elaborado pelo autor (2026)}
 \end{table}
 
 A criticidade é o critério de maior peso, refletindo a prioridade clínica do

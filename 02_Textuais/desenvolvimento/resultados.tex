@@ -10,23 +10,9 @@ método descrito no capítulo anterior.
 
 \section{Procedimento de obtenção dos dados}
 
-O dashboard foi executado e alimentado com quatro planilhas, processadas pela
-camada de transformação do sistema, conforme a Tabela~\ref{tab:insumos}.
-
-\begin{table}[H]
-    \centering
-    \captionsource{tab:insumos}{Planilhas reais utilizadas no estudo de caso}{Elaborado pelo autor (2026)}
-    \begin{tabular}{ll}
-        \hline
-        \textbf{Insumo} & \textbf{Arquivo} \\
-        \hline
-        Inventário de equipamentos & \texttt{Inventario\_HC\_UFPE.csv} \\
-        Criticidade & \texttt{planilha de equipamentos final.csv} \\
-        OS --- formato antigo & \texttt{Corretivas\_Externas\_2018\_a\_2024.csv} \\
-        OS --- formato atual & \texttt{ServicoExternoPeriodo20251113092221.csv} \\
-        \hline
-    \end{tabular}
-\end{table}
+O dashboard foi executado e alimentado com as quatro planilhas reais do HC-UFPE
+descritas na Seção~\ref{sec:fontes} (Tabela~\ref{tab:arquivos}), processadas pela
+camada de transformação do sistema.
 
 Ao carregar a análise, o sistema unificou os dois formatos de ordens de serviço
 em uma base única e cruzou cada OS com o inventário e a criticidade de cada
@@ -51,7 +37,6 @@ ferramenta, e a Tabela~\ref{tab:kpis} resume os principais indicadores.
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:kpis}{Indicadores principais (KPIs) dos setores críticos}{Elaborado pelo autor (2026)}
     \begin{tabular}{lr}
         \hline
         \textbf{Indicador} & \textbf{Valor} \\
@@ -64,6 +49,7 @@ ferramenta, e a Tabela~\ref{tab:kpis} resume os principais indicadores.
         Equipamentos com 10 anos ou mais & 97 (18,8\%) \\
         \hline
     \end{tabular}
+    \captionsource{tab:kpis}{Indicadores principais (KPIs) dos setores críticos}{Elaborado pelo autor (2026)}
 \end{table}
 
 Quanto à criticidade, o recorte distribui-se em 134 equipamentos de criticidade
@@ -78,7 +64,6 @@ substituição. A Tabela~\ref{tab:ranking} traz os equipamentos mais bem pontuad
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:ranking}{Topo do ranking de prioridade de substituição}{Elaborado pelo autor (2026)}
     \begin{tabular}{clllccr}
         \hline
         \textbf{\#} & \textbf{Identificador} & \textbf{Modelo} & \textbf{Setor} & \textbf{Crit.} & \textbf{Idade} & \textbf{Score} \\
@@ -93,6 +78,7 @@ substituição. A Tabela~\ref{tab:ranking} traz os equipamentos mais bem pontuad
         8 & HCPE-0549 & BILITRON-3006-BTP & UTI Neonatal & 3 & 13 & 72,2 \\
         \hline
     \end{tabular}
+    \captionsource{tab:ranking}{Topo do ranking de prioridade de substituição}{Elaborado pelo autor (2026)}
 \end{table}
 
 O topo do ranking é integralmente composto por equipamentos de criticidade máxima
@@ -109,7 +95,6 @@ setor, e a evolução do custo total por ano com os dez equipamentos de maior cu
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:historico}{Histórico de emissão de OS e custo por ano}{Elaborado pelo autor (2026)}
     \begin{tabular}{lrrr}
         \hline
         \textbf{Ano} & \textbf{OS} & \textbf{Custo total} & \textbf{Custo médio/OS} \\
@@ -124,6 +109,7 @@ setor, e a evolução do custo total por ano com os dez equipamentos de maior cu
         2025\textsuperscript{*} & 11 & R\$~78.560,91 & R\$~7.142 \\
         \hline
     \end{tabular}
+    \captionsource{tab:historico}{Histórico de emissão de OS e custo por ano}{Elaborado pelo autor (2026)}
 \end{table}
 
 \noindent \textsuperscript{*} O ano de 2025 é parcial (dados até 13/11/2025).
@@ -147,7 +133,6 @@ setor.
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:custo_setor}{Concentração de custo em OS por setor}{Elaborado pelo autor (2026)}
     \begin{tabular}{lrr}
         \hline
         \textbf{Setor} & \textbf{Custo em OS} & \textbf{Equip.} \\
@@ -160,6 +145,7 @@ setor.
         UTI Adulto / URCC & R\$~9.837,79 & 1 \\
         \hline
     \end{tabular}
+    \captionsource{tab:custo_setor}{Concentração de custo em OS por setor}{Elaborado pelo autor (2026)}
 \end{table}
 
 A UTI Neonatal, isoladamente, responde por aproximadamente 39\% de todo o gasto
