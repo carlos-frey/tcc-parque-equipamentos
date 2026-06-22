@@ -6,29 +6,29 @@
 A engenharia clínica é o campo responsável por aplicar conhecimentos de
 engenharia ao ambiente de saúde, com foco na gestão segura e eficiente das
 tecnologias médico-hospitalares ao longo de todo o seu ciclo de vida --- da
-aquisição ao descarte. A gestão de tecnologia médico-hospitalar (GTMH) abrange
-atividades como incorporação, inventário, manutenção, controle de desempenho e
-desativação dos equipamentos, com o objetivo de assegurar disponibilidade,
-confiabilidade e segurança. No Brasil, o gerenciamento de tecnologias em saúde
-nos estabelecimentos é objeto de regulamentação sanitária específica.
+aquisição ao descarte~\cite{zamzam2021prioritisation}. A gestão de tecnologia
+médico-hospitalar (GTMH) abrange atividades como incorporação, inventário,
+manutenção, controle de desempenho e desativação dos equipamentos, com o objetivo
+de assegurar disponibilidade, confiabilidade e
+segurança~\cite{park2025evaluation}. No Brasil, o gerenciamento de tecnologias em
+saúde nos estabelecimentos é objeto de regulamentação sanitária
+específica~\cite{toscas2023management}.
 
-\todo[inline]{Cite aqui a regulamentação e a literatura de engenharia clínica que
-você adotar (ex.: ANVISA RDC nº 509/2021; livros/artigos de GTMH). Insira no
-formato ABNT.}
+\todo[inline]{Falta apenas a norma sanitária brasileira (ex.: ANVISA RDC nº
+509/2021) --- não coberta pelos artigos-fonte; buscar e inserir em formato ABNT.}
 
 \section{Manutenção e ciclo de vida dos equipamentos}
 
 As estratégias de manutenção costumam ser classificadas em corretiva (executada
 após a falha), preventiva (programada para reduzir a probabilidade de falha) e
-preditiva (baseada no monitoramento da condição do equipamento). O histórico de
+preditiva (baseada no monitoramento da condição do
+equipamento)~\cite{zamzam2021prioritisation}. O histórico de
 manutenção corretiva, em particular, é um indicador relevante do estado de um
 equipamento: o aumento da frequência e, sobretudo, do custo das intervenções
 tende a acompanhar o envelhecimento do item, sinalizando a aproximação do fim de
-sua vida útil econômica. O acompanhamento desses indicadores ao longo do tempo
-fornece subsídios para decidir entre manter ou substituir um equipamento.
-
-\todo[inline]{Inclua referências sobre tipos de manutenção e ciclo de vida/curva
-de custos de equipamentos.}
+sua vida útil econômica~\cite{park2025evaluation}. O acompanhamento desses
+indicadores ao longo do tempo fornece subsídios para decidir entre manter ou
+substituir um equipamento.
 
 \section{Criticidade e priorização de substituição}
 
@@ -38,12 +38,11 @@ usualmente representada em níveis (por exemplo, de baixa a alta). A priorizaç�
 de substituição busca ordenar os candidatos à troca combinando múltiplos
 critérios --- tipicamente criticidade, idade e custo de manutenção ---, de modo
 que os recursos, sempre limitados, sejam direcionados aos itens cuja renovação
-traz maior retorno em segurança e em eficiência. Abordagens multicritério desse
-tipo são amplamente empregadas no apoio à decisão em gestão de ativos e
-fundamentam o modelo de otimização adotado neste trabalho.
-
-\todo[inline]{Cite a literatura de priorização/análise multicritério aplicada à
-substituição de equipamentos.}
+traz maior retorno em segurança e em
+eficiência~\cite{park2025evaluation,zamzam2021prioritisation}. Abordagens
+multicritério desse tipo (como AHP e TOPSIS) são amplamente empregadas no apoio à
+decisão em gestão de ativos e fundamentam o modelo de otimização adotado neste
+trabalho~\cite{huang2024transforming}.
 
 \section{Integração de dados (ETL) e visualização da informação}
 
@@ -57,5 +56,6 @@ soluções de \textit{Business Intelligence} (BI), que sintetizam grandes volume
 de informação em indicadores e visualizações de fácil leitura, favorecendo a
 tomada de decisão baseada em dados.
 
-\todo[inline]{Cite referências de ETL, BI e visualização de dados que embasarão
-esta subseção.}
+\todo[inline]{ETL, BI e visualização de dados não são cobertos pelos
+artigos-fonte; buscar refs específicas (ex.: Kimball para ETL; literatura de
+BI/dashboards) e inserir em formato ABNT.}
