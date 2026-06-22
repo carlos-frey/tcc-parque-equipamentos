@@ -71,10 +71,14 @@ alta (nível 3), 156 de criticidade média (nível 2) e 226 de criticidade baixa
 (nível 1). Todos os equipamentos constam com status ``Em uso''.
 
 \section{Prioridade de substituição}
+% * <mas6@cin.ufpe.br> 15:10:43 22 Jun 2026 UTC-0300:
+% adicionar a figura de como essa informação está na interface - vale para todos os itens aqui dos resultados
 
 O sistema calcula um \textit{score} de 0 a 100 para cada equipamento, combinando
 idade, criticidade e custo acumulado de manutenção, e ordena os candidatos à
 substituição. A Tabela~\ref{tab:ranking} traz os equipamentos mais bem pontuados.
+% * <mas6@cin.ufpe.br> 15:09:33 22 Jun 2026 UTC-0300:
+% verificar a duplicidade do nome tabela, quando coloca o \ref, ele já adiciona o nome do elemento antes, então não precisa colocar novamente, se não fica duplicado - corrigir em todas as ocorrências, tanto para figuras quanto para tabelas
 
 \begin{table}[H]
     \centering
@@ -98,6 +102,8 @@ substituição. A Tabela~\ref{tab:ranking} traz os equipamentos mais bem pontuad
 O topo do ranking é integralmente composto por equipamentos de criticidade máxima
 (nível 3) e idade igual ou superior a 13 anos --- chegando a 23 anos ---,
 concentrados em UTI Neonatal e Centro Obstétrico (incubadoras e berços aquecidos
+% * <mas6@cin.ufpe.br> 15:16:54 22 Jun 2026 UTC-0300:
+% Falar sobre a opção de distribuição de orçamento - explicar como funciona e utilidade
 BA-51, aparelhos de fototerapia BILITRON e ventilador de transporte OXYLOG).
 
 \section{Histórico de emissão de OS e evolução de custo}

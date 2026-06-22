@@ -5,7 +5,7 @@ Este capítulo descreve a abordagem adotada para o desenvolvimento da ferramenta
 de apoio à gestão de equipamentos médico-hospitalares e o método de tratamento
 dos dados que sustenta os resultados apresentados no capítulo seguinte. Trata-se
 de uma pesquisa aplicada, de natureza quantitativa e caráter exploratório,
-conduzida na forma de desenvolvimento de software seguido de um estudo de caso
+conduzida na forma de desenvolvimento de \textit{software} seguido de um estudo de caso
 com dados reais do parque de equipamentos do HC-UFPE.
 
 \section{Tecnologias e arquitetura da ferramenta}
@@ -75,11 +75,10 @@ qual se aproveitam apenas as colunas de modelo e peso de criticidade.
 A etapa central do processo é a unificação dos dois formatos de OS em um esquema
 canônico único. Antes da concatenação, os valores são normalizados de acordo com
 a sua origem, evitando ambiguidades de interpretação, conforme a
-Tabela~\ref{tab:normalizacao}.
+\ref{tab:normalizacao}.
 
 \begin{table}[H]
     \centering
-    \captionsource{tab:normalizacao}{Normalização dos atributos por formato de origem}{Elaborado pelo autor (2026)}
     \begin{tabular}{lll}
         \hline
         \textbf{Atributo} & \textbf{Formato antigo (BR)} & \textbf{Formato atual (ISO/US)} \\
@@ -89,6 +88,7 @@ Tabela~\ref{tab:normalizacao}.
         Descrição do serviço & tipo de serviço + assistência & fornecedor \\
         \hline
     \end{tabular}
+    \captionsource{tab:normalizacao}{Normalização dos atributos por formato de origem}{Elaborado pelo autor (2026)}
 \end{table}
 
 Em seguida, os nomes das colunas de ambos os formatos são mapeados para um
@@ -117,11 +117,13 @@ serviço associadas, pronta para alimentar os indicadores do painel.
 
 Para apoiar a decisão de substituição, a ferramenta calcula um índice de
 prioridade (\textit{score}) na escala de 0 a 100, combinando três critérios
-complementares, conforme a Tabela~\ref{tab:score}.
+complementares, conforme a \ref{tab:score}.
 
 \begin{table}[H]
     \centering
     \captionsource{tab:score}{Critérios e pontuações do índice de priorização}{Elaborado pelo autor (2026)}
+% * <mas6@cin.ufpe.br> 15:05:52 22 Jun 2026 UTC-0300:
+% padronizar o título e fonte para baixo do elemento gráfico
     \begin{tabular}{lp{7cm}r}
         \hline
         \textbf{Critério} & \textbf{Regra} & \textbf{Pontuação máxima} \\
@@ -158,7 +160,7 @@ assistencial (UTI Adulto, UTI Neonatal, Bloco Cirúrgico e Centro Obstétrico),
 seleção que pode ser ampliada ou alterada pelo usuário no menu de configurações.
 Sobre o conjunto filtrado, são calculados os seguintes indicadores: total de
 equipamentos, total de ordens de serviço e gasto total (KPIs); distribuição
-etária do parque; ranking de prioridade de substituição; histórico mensal e anual
+etária do parque; \textit{ranking} de prioridade de substituição; histórico mensal e anual
 de emissão de OS; evolução do custo por ano; custo por setor; e os equipamentos
 de maior custo acumulado. Todos os indicadores reagem dinamicamente aos filtros
 aplicados.
