@@ -86,6 +86,33 @@ O topo do ranking é integralmente composto por equipamentos de criticidade máx
 concentrados em UTI Neonatal e Centro Obstétrico (incubadoras e berços aquecidos
 BA-51, aparelhos de fototerapia BILITRON e ventilador de transporte OXYLOG).
 
+\section{Distribuição de orçamento para substituição}
+\label{sec:result_orcamento}
+
+O ranking de prioridade é o ponto de partida, mas o principal recurso de apoio à
+decisão da ferramenta é o utilitário de distribuição de orçamento descrito na
+Seção~\ref{sec:score}. A partir do \textit{score} de cada equipamento e de um teto
+orçamentário informado pelo gestor, o sistema percorre os candidatos em ordem
+decrescente de prioridade e seleciona, dentro do limite disponível, o subconjunto
+cuja substituição maximiza o impacto agregado em segurança e em redução de custo
+--- uma seleção restrita pelo orçamento sobre a lista priorizada.
+
+Aplicado ao recorte do HC-UFPE, o utilitário converte a lista priorizada
+(Tabela~\ref{tab:ranking}) em um plano de substituição acionável. Os itens do topo
+do \textit{ranking} --- concentrados na UTI Neonatal e no Centro Obstétrico, como
+os berços aquecidos BA-51, o ventilador de transporte OXYLOG e os aparelhos de
+fototerapia BILITRON --- são os primeiros contemplados, e os demais candidatos vão
+sendo agregados sucessivamente enquanto restar orçamento. Assim, a ferramenta
+responde objetivamente \textit{quais} equipamentos trocar diante de uma restrição
+financeira, e não apenas \textit{quais} priorizar: a saída deixa de ser um
+\textit{ranking} e passa a ser uma recomendação direta de alocação do recurso de
+renovação, alinhada a abordagens multicritério de substituição de
+equipamentos~\cite{huang2024transforming,park2025evaluation}.
+
+\todo[inline]{Se disponível, incluir captura da tela de distribuição de orçamento e
+um exemplo numérico com um teto orçamentário real, mostrando o conjunto de
+equipamentos selecionado e o orçamento consumido.}
+
 \section{Histórico de emissão de OS e evolução de custo}
 
 A Tabela~\ref{tab:historico} cruza o número de ordens de serviço com o custo total

@@ -58,10 +58,13 @@
 
 \bibliographystyle{abnt-num}
 
+% Legenda (título) numerada via \caption --- sintaxe reservada do LaTeX --- seguida
+% da fonte como texto comum. A fonte NÃO usa \caption*: não é uma legenda, e
+% reaproveitar a sintaxe de legenda para texto livre gera ambiguidade.
 \newcommand*{\captionsource}[3]{%
-    \caption{\label{#1}#2.}
-    \vspace{-0.3cm}
-    \caption*{Fonte: #3.}
+    \caption{\label{#1}#2.}%
+    \par\vspace{-0.3cm}%
+    {\centering\small Fonte: #3.\par}%
 }
 
 
